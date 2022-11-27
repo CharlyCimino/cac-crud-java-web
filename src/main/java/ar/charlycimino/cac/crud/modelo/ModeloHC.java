@@ -12,7 +12,6 @@ import java.util.Properties;
  * https://www.youtube.com/c/CharlyCimino Encontrá más código en mi repo de
  * GitHub: https://github.com/CharlyCimino
  */
-
 // Modelo HC (Hard Codeado): Los datos se guardan en la RAM. Solo sirve para testear la app.
 public class ModeloHC implements Modelo {
 
@@ -31,19 +30,13 @@ public class ModeloHC implements Modelo {
     @Override
     public Alumno getAlumno(int id) {
         int i = 0;
-        Alumno encontrado = null;
-        while (i < this.alumnosGuardados.size() && encontrado == null) {
-            Alumno a = this.alumnosGuardados.get(i);
-            if (a.getId() == id) {
-                encontrado = a;
-            } else {
-                i++;
-            }
+        while (i < this.alumnosGuardados.size() && this.alumnosGuardados.get(i).getId() == id) {
+            i++;
         }
-        if (encontrado == null) {
+        if (i >= this.alumnosGuardados.size()) {
             throw new RuntimeException("No se encontró alumno con ID " + id);
         }
-        return encontrado;
+        return this.alumnosGuardados.get(i);
     }
 
     @Override
@@ -68,18 +61,18 @@ public class ModeloHC implements Modelo {
     }
 
     private void crearAlumnosFake() {
-        try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("carasFake.properties")) {
+        try ( InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("carasFake.properties")) {
             Properties props = new Properties();
             props.load(is);
-            this.alumnosGuardados.add(new Alumno(1, "Kouza", "Ibrahim (HC)", "kouibr@mailsrv.fake", "1999-06-22", (String) props.get("HOMBRE_1")));
-            this.alumnosGuardados.add(new Alumno(2, "Polo", "Irma", "irmapolo@mailsrv.fake", "1991-02-28"));
-            this.alumnosGuardados.add(new Alumno(3, "López", "María", "maria_lopez@mailsrv.fake", "1984-03-24", (String) props.get("MUJER_1")));
-            this.alumnosGuardados.add(new Alumno(4, "García", "Luis", "luis123@mailsrv.fake", "1998-07-04", (String) props.get("HOMBRE_3")));
-            this.alumnosGuardados.add(new Alumno(5, "Gómez", "Sara", "saragomez@mailsrv.fake", "1991-02-28", (String) props.get("MUJER_3")));
-            this.alumnosGuardados.add(new Alumno(6, "Ruiz", "Pedro", "ruiz.pedro@mailsrv.fake", "1986-11-13", (String) props.get("HOMBRE_2")));
-            this.alumnosGuardados.add(new Alumno(7, "Pérez", "Lía", "lp12@mailsrv.fake", "1968-07-12", (String) props.get("MUJER_2")));
-            this.alumnosGuardados.add(new Alumno(8, "Suárez", "Ana", "suanan@mailsrv.fake", "1992-05-16", (String) props.get("MUJER_4")));
-            this.alumnosGuardados.add(new Alumno(9, "Mohamed", "Samuel", "samo@mailsrv.fake", "1990-05-14", (String) props.get("HOMBRE_4")));
+            this.alumnosGuardados.add(new Alumno(1, "Ibrahim (HC)", "Kouza", "kouibr@mailsrv.fake", "1999-06-22", (String) props.get("HOMBRE_1")));
+            this.alumnosGuardados.add(new Alumno(2, "Irma", "Polo", "irmapolo@mailsrv.fake", "1991-02-28"));
+            this.alumnosGuardados.add(new Alumno(3, "María", "López", "maria_lopez@mailsrv.fake", "1984-03-24", (String) props.get("MUJER_1")));
+            this.alumnosGuardados.add(new Alumno(4, "Luis", "García", "luis123@mailsrv.fake", "1998-07-04", (String) props.get("HOMBRE_3")));
+            this.alumnosGuardados.add(new Alumno(5, "Sara", "Gómez", "saragomez@mailsrv.fake", "1991-02-28", (String) props.get("MUJER_3")));
+            this.alumnosGuardados.add(new Alumno(6, "Pedro", "Ruiz", "ruiz.pedro@mailsrv.fake", "1986-11-13", (String) props.get("HOMBRE_2")));
+            this.alumnosGuardados.add(new Alumno(7, "Lía", "Pérez", "lp12@mailsrv.fake", "1968-07-12", (String) props.get("MUJER_2")));
+            this.alumnosGuardados.add(new Alumno(8, "Ana", "Suárez", "suanan@mailsrv.fake", "1992-05-16", (String) props.get("MUJER_4")));
+            this.alumnosGuardados.add(new Alumno(9, "Samuel", "Mohamed", "samo@mailsrv.fake", "1990-05-14", (String) props.get("HOMBRE_4")));
         } catch (IOException ex) {
             throw new RuntimeException("No se pudieron cargar las caras fake");
         }
