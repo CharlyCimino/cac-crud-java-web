@@ -1,11 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="comunes/inicioHTML.jsp"/>
+<jsp:include page="WEB-INF/pages/comunes/inicioHTML.jsp">
+    <jsp:param name="elTitulo" value="ERROR" />
+</jsp:include>
 
-<jsp:include page="comunes/inicioHead.jsp"/>
-<title>Ocurrió un error</title>
-<jsp:include page="comunes/finHead.jsp"/>
-
-<jsp:include page="comunes/nav.jsp"/>
+<jsp:include page="WEB-INF/pages/comunes/navbar.jsp" />
 
 <section class="py-3">
     <div class="container">

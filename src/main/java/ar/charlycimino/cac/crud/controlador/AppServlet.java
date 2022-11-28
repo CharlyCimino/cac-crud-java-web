@@ -87,8 +87,6 @@ public class AppServlet extends HttpServlet {
     }
 
     private void cargarAlumnoSegunParams(Alumno a, HttpServletRequest request) {
-        System.out.println("N " + request.getParameter("nombre"));
-        System.out.println("A " + request.getParameter("apellido"));
         a.setNombre(request.getParameter("nombre"));
         a.setApellido(request.getParameter("apellido"));
         a.setMail(request.getParameter("mail"));

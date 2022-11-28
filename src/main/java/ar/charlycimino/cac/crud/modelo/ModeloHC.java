@@ -30,7 +30,7 @@ public class ModeloHC implements Modelo {
     @Override
     public Alumno getAlumno(int id) {
         int i = 0;
-        while (i < this.alumnosGuardados.size() && this.alumnosGuardados.get(i).getId() == id) {
+        while (i < this.alumnosGuardados.size() && this.alumnosGuardados.get(i).getId() != id) {
             i++;
         }
         if (i >= this.alumnosGuardados.size()) {

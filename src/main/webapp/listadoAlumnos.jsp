@@ -15,7 +15,8 @@
             <p class="small">Los datos de la personas aquí listadas son ficticios. Sus rostros fueron generados con inteligencia artificial.</p>
             <div>
                 <a href="#" class="btn btn-success"
-                   data-bs-toggle="modal" data-bs-target="#modalAgregarAlumno">Agregar alumno</a>
+                   data-bs-toggle="modal" data-bs-target="#modalAgregarAlumno"><i class="bi bi-person-add"></i>
+ Agregar alumno</a>
             </div>
         </div>
         <c:choose>
