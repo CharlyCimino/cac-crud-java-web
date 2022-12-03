@@ -6,25 +6,19 @@
 
 <jsp:include page="../comunes/navbar.jsp" />
 
-<section class="py-3">
-    <div class="container">
-        <div class="row">
-            <h1 class="h3">Borrar alumno</h1>
-            <p class="lead">Estás a punto de borrar a ${alumnoABorrar.nombreCompleto}</p>
-        </div>        
+<section class="container py-3">
+    <div class="row">
+        <h1 class="h3">Borrando alumno</h1>
+        <p class="lead">Estás a punto de borrar a ${alumnoABorrar.nombreCompleto}.</p>
     </div>
     <div class="container px-4 mt-3">
         <div class="row align-items-center justify-content-center">
             <div class="col-sm-7 col-md-6 col-lg-4" >
-                <div class="card border p-4 rounded-3 bg-light">
-                    <img class="card-img-top" src="${alumnoABorrar.foto}" alt="Foto de ${alumnoABorrar.nombreCompleto}" />
-                    <div class="card-body pb-0">
-                        <div class="text-center">
-                            <h5 class="fw-bolder">${alumnoABorrar.nombreCompleto}</h5>
-                            <p class="mb-1">${alumnoABorrar.fechaNacimiento} (${alumnoABorrar.edad} años)</p>
-                            <ins>${alumnoABorrar.mail}</ins>  
-                        </div>
-                    </div>
+                <div class="card h-100">
+                    <jsp:include page="partes/dataCardAlumno.jsp">
+                        <jsp:param name="fotoAlumno" value="${alumnoABorrar.foto}" />
+                        <jsp:param name="nombreCompletoAlumno" value="${alumnoABorrar.nombreCompleto}" />
+                    </jsp:include>
                 </div>
             </div>
             <div class="col-sm-5 col-md-6 col-lg-4">
@@ -32,7 +26,7 @@
                       method="post" class="was-validated border p-2 rounded-3 bg-light">
                     <div class="row text-center">
                         <div class="col-12 mb-2">
-                            <p class="lead m-0">¿Estás seguro?</p>
+                            <p class="lead m-0">¿Estás seguro/a?</p>
                         </div>
                         <div class="col-12">
                             <a href="${pageContext.request.contextPath}/app" class="btn btn-secondary">Mejor no</a>

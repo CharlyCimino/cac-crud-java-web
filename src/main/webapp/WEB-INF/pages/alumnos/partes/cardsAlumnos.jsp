@@ -2,12 +2,10 @@
 <c:forEach items="${listaAlumnos}" var="alumno">  
     <div class="col">
         <div class="card h-100">
-            <img class="card-img-top" src="${alumno.foto}" alt="Foto de ${alumno.nombreCompleto}" />
-            <div class="card-body pt-3">
-                <div class="text-center">
-                    <h5 class="fw-bolder">${alumno.nombreCompleto}</h5>
-                </div>
-            </div>
+            <jsp:include page="dataCardAlumno.jsp">
+                <jsp:param name="fotoAlumno" value="${alumno.foto}" />
+                <jsp:param name="nombreCompletoAlumno" value="${alumno.nombreCompleto}" />
+            </jsp:include>
             <div class="card-footer">
                 <div class="row justify-content-center">
                     <div class="col-4">
