@@ -1,10 +1,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<jsp:include page="WEB-INF/pages/comunes/inicioHTML.jsp">
+<jsp:include page="../comunes/inicioHTML.jsp">
     <jsp:param name="elTitulo" value="Listando alumnos" />
 </jsp:include>
 
-<jsp:include page="WEB-INF/pages/comunes/navbar.jsp" />
+<jsp:include page="../comunes/navbar.jsp" />
 
 <section class="container">
     <div class="row pt-3">
@@ -21,7 +21,7 @@
     <c:choose>
         <c:when test = "${listaAlumnos != null && !listaAlumnos.isEmpty()}">
             <div class="row g-4 mb-3 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5" data-masonry='{"percentPosition": true }' >
-                <jsp:include page="WEB-INF/pages/alumnos/partes/cardsAlumnos.jsp"/>
+                <jsp:include page="partes/cardsAlumnos.jsp"/>
             </div>
         </c:when>
         <c:otherwise>
@@ -34,9 +34,9 @@
     </c:choose>
 </section>
 
-<jsp:include page="WEB-INF/pages/alumnos/partes/modalAgregarAlumno.jsp"/>     
+<jsp:include page="partes/modalAgregarAlumno.jsp"/>     
 <script src="scripts/fotobase64.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
 
-<jsp:include page="WEB-INF/pages/comunes/footer.jsp"/>
-<jsp:include page="WEB-INF/pages/comunes/finHTML.jsp"/>
+<jsp:include page="../comunes/footer.jsp"/>
+<jsp:include page="../comunes/finHTML.jsp"/>

@@ -17,6 +17,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
  */
 public class Conexion {
 
+    private static final String URL_DB = "jdbc:mysql://root:root@localhost:3306/cac_crud_bd?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static Connection con;
     private static BasicDataSource dataSource;
 
@@ -26,17 +27,8 @@ public class Conexion {
     public static DataSource getDataSource() {
         if (dataSource == null) {
             try {
-                String env = System.getenv("JAWSDB_URL");
-                String urlDB;
-                if (env == null) {
-                    System.out.println("LOCAL");
-                    urlDB = "jdbc:mysql://root:root@localhost:3306/cac_crud_bd?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
-                } else {
-                    System.out.println("PRODUCCIÓN");
-                    urlDB = "jdbc:" + env;
-                }
                 dataSource = new BasicDataSource();
-                dataSource.setUrl(urlDB);
+                dataSource.setUrl(URL_DB);
                 dataSource.setInitialSize(50);
             } catch (Exception ex) {
                 throw new RuntimeException("Error de E/S al leer config de BBDD", ex);

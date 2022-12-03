@@ -4,13 +4,13 @@ package ar.charlycimino.cac.crud.controlador;
 import ar.charlycimino.cac.crud.modelo.Alumno;
 import ar.charlycimino.cac.crud.modelo.Modelo;
 import ar.charlycimino.cac.crud.modelo.ModeloHC;
+import ar.charlycimino.cac.crud.modelo.ModeloMySQL;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -22,13 +22,13 @@ import jakarta.servlet.http.HttpSession;
 public class AppServlet extends HttpServlet {
 
     private Modelo model;
-    private final String URI_LIST = "listadoAlumnos.jsp";
+    private final String URI_LIST = "/WEB-INF/pages/alumnos/listadoAlumnos.jsp";
     private final String URI_EDIT = "/WEB-INF/pages/alumnos/editarAlumno.jsp";
     private final String URI_REMOVE = "/WEB-INF/pages/alumnos/borrarAlumno.jsp";       
 
     @Override
     public void init() throws ServletException {
-        this.model = new ModeloHC();
+        this.model = new ModeloMySQL();
     }
 
     @Override
@@ -51,10 +51,8 @@ public class AppServlet extends HttpServlet {
                 request.getRequestDispatcher(URI_REMOVE).forward(request, response);
                 break;
             default:
-                HttpSession sesionHttp = request.getSession();
-                sesionHttp.setAttribute("listaAlumnos", model.getAlumnos());
-                //request.getRequestDispatcher(URI_LIST).forward(request, response);
-                response.sendRedirect(URI_LIST);
+                request.setAttribute("listaAlumnos",model.getAlumnos());
+                request.getRequestDispatcher(URI_LIST).forward(request, response);                
         }
     }
 
@@ -82,8 +80,8 @@ public class AppServlet extends HttpServlet {
                 id = Integer.parseInt(request.getParameter("id"));
                 model.removeAlumno(id);
                 break;
-        }
-        doGet(request, response);
+        }        
+        response.sendRedirect(getServletContext().getContextPath() + "/app");
     }
 
     private void cargarAlumnoSegunParams(Alumno a, HttpServletRequest request) {
