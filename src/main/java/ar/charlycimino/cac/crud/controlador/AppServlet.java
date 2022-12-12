@@ -28,7 +28,7 @@ public class AppServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        this.model = new ModeloMySQL();
+        this.model = new ModeloHC(); // Cambiar por ModeloMySQL cuando se tenga la BD lista
     }
 
     @Override
